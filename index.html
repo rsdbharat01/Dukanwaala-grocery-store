@@ -286,7 +286,7 @@
             <div style="font-size:10px; opacity:0.8">LOCAL DISCOUNT</div>
             <div style="font-weight:800; font-size:18px">GAONWALO</div>
         </div>
-        <div style="background:white; color:var(--primary); padding:6px 12px; border-radius:10px; font-weight:800; font-size:12px">COPY</div>
+        <div onclick="applyCoupon()" style="background:white; color:var(--primary); padding:6px 12px; border-radius:10px; font-weight:800; font-size:12px; cursor:pointer">APPLY</div>
     </div>
 </div>
 
@@ -330,7 +330,7 @@
         <div>
             <div id="cartQty" style="font-weight: 800; font-size: 18px;">0 Items</div>
             <div id="freeShipMsg" style="font-size: 11px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px; font-weight: 600;"></div>
-            <div style="font-size: 11px; opacity: 0.9;">FREE CHETAK DELIVERY</div>
+            <div style="font-size: 11px; opacity: 0.9;">CHETAK DELIVERY</div>
         </div>
     </div>
     <div style="text-align: right;">
@@ -358,7 +358,7 @@
                 <span>Samaan Total</span><span id="billSub">₹0</span>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:10px; color:var(--village-green); font-weight:700;">
-                <span>Chetak Delivery</span><span>FREE</span>
+                <span>Chetak Delivery</span><span id="billDel">FREE</span>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:var(--accent); font-weight:700;">
                 <span>Gaon Discount</span><span>-₹10</span>
@@ -395,21 +395,18 @@
         { id: 2, name: "Fortune Mustard Oil (1L)", price: 155, old: 175, cat: "Groceries", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
         { id: 3, name: "Amul Gold Milk (1L)", price: 66, old: 68, cat: "Dairy", img: "https://images.unsplash.com/photo-1550583724-125581cc2532?w=300" },
         { id: 4, name: "Sugar / Chini (1kg)", price: 42, old: 48, cat: "Groceries", img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=300" },
-        { id: 5, name: "Fresh Aloo (Babuganj Mandi) 2kg", price: 45, old: 60, cat: "Vegetables", img: "https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?w=300" },
+        { id: 5, name: "Fresh Aloo (Babuganj) 2kg", price: 45, old: 60, cat: "Vegetables", img: "https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?w=300" },
         { id: 6, name: "Desi Onions (Red) 1kg", price: 35, old: 50, cat: "Vegetables", img: "https://images.unsplash.com/photo-1508747703725-719777637510?w=300" },
         { id: 7, name: "Maggi Masala (Pack of 4)", price: 56, old: 60, cat: "Snacks", img: "https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=300" },
+        { id: 21, name: "Special Anarsa (1kg)", price: 50, old: 70, cat: "Snacks", img: "https://m.media-amazon.com/images/I/718y6K-mO1L._SL1500_.jpg" },
+        { id: 22, name: "Kunda Masala Chaat (Plate)", price: 30, old: 40, cat: "Snacks", img: "https://images.unsplash.com/photo-1601050638917-3f3095c215b1?w=300" },
         { id: 8, name: "Tata Salt (1kg)", price: 28, old: 30, cat: "Groceries", img: "https://cdn-icons-png.flaticon.com/512/3034/3034811.png" },
         { id: 9, name: "Bake-On Premium Cake", price: 250, old: 300, cat: "Snacks", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300" },
-        { id: 10, name: "Kunda Special Samosa (Plate)", price: 30, old: 40, cat: "Snacks", img: "https://images.unsplash.com/photo-1601050638917-3f3095c215b1?w=300" },
         { id: 11, name: "Red Label Tea (250g)", price: 140, old: 160, cat: "Groceries", img: "https://images.unsplash.com/photo-1544787210-2211d7c309c7?w=300" },
-        { id: 12, name: "Amul Butter (100g)", price: 58, old: 62, cat: "Dairy", img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300" },
         { id: 13, name: "Lays Party Pack", price: 50, old: 50, cat: "Snacks", img: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300" },
         { id: 14, name: "Coca Cola (1.25L)", price: 95, old: 100, cat: "Snacks", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" },
-        { id: 15, name: "Surf Excel (500g)", price: 75, old: 85, cat: "Groceries", img: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png" },
         { id: 16, name: "Gul Manjan (Red Label)", price: 20, old: 25, cat: "Daily", img: "https://m.media-amazon.com/images/I/71YyS2G0uDL._SL1500_.jpg" },
-        { id: 17, name: "Dant Kanti (Small)", price: 10, old: 15, cat: "Daily", img: "https://m.media-amazon.com/images/I/61M6E7WvQBL._SL1000_.jpg" },
         { id: 18, name: "Parle-G Biscuit", price: 10, old: 10, cat: "Snacks", img: "https://m.media-amazon.com/images/I/71W+k3L+GUL._SL1500_.jpg" },
-        { id: 19, name: "Rin Soap Bar", price: 10, old: 10, cat: "Daily", img: "https://m.media-amazon.com/images/I/51mZl2-h+pL._SL1000_.jpg" },
         { id: 20, name: "Amul Dahi", price: 30, old: 32, cat: "Dairy", img: "https://images.unsplash.com/photo-1550583724-125581cc2532?w=300" }
     ];
 
@@ -457,63 +454,69 @@
         updateCartUI();
     }
 
-   function updateCartUI() {
-    const items = Object.values(cart);
-    const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-    const count = items.reduce((s, i) => s + i.qty, 0);
-    
-    // DELIVERY LOGIC: ₹150 se niche ₹20 charge, upar FREE
-    const delFee = (subtotal > 0 && subtotal < 150) ? 20 : 0;
-    const total = Math.max(0, subtotal + delFee - 10); // ₹10 Gaon Discount fix hai
-
-    document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
-    document.getElementById('cartQty').innerText = `${count} Items`;
-    document.getElementById('cartPrice').innerText = total;
-
-    // Niche wala message bar change hoga
-    const msgBox = document.getElementById('freeShipMsg');
-    if (subtotal < 150) {
-        msgBox.innerHTML = `Add ₹${150 - subtotal} more for <span style="color:var(--gold)">FREE Delivery</span>`;
-    } else {
-        msgBox.innerHTML = `🎉 Congratulations! <span style="color:var(--village-green)">Free Delivery Applied</span>`;
+    function applyCoupon() {
+        alert("GAONWALO Coupon Applied! ₹10 Discount Added.");
+        updateCartUI();
     }
-}
 
-    
-        
-    function toggleCheckout(show) {
-    const dr = document.getElementById('checkoutDrawer');
-    dr.style.display = show ? 'flex' : 'none';
-    if(show) {
+    function updateCartUI() {
         const items = Object.values(cart);
         const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
+        const count = items.reduce((s, i) => s + i.qty, 0);
         
-        // Fee calculation yahan bhi same rahegi
-        const delFee = (subtotal >= 150) ? 0 : 20;
-        
-        document.getElementById('billItems').innerHTML = items.map(i => `
-            <div style="display:flex; justify-content:space-between;">
-                <span>${i.name} (x${i.qty})</span>
-                <span>₹${i.price * i.qty}</span>
-            </div>`).join('');
-            
-        document.getElementById('billSub').innerText = `₹${subtotal}`;
-        document.getElementById('billDel').innerText = delFee === 0 ? "FREE" : `₹${delFee}`;
-        document.getElementById('billGrand').innerText = `₹${Math.max(0, subtotal + delFee - 10)}`;
+        // Logic: Under 150 -> 30 delivery, 150+ -> Free
+        const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
+        const total = Math.max(0, subtotal + delFee - 10); 
+
+        document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
+        document.getElementById('cartQty').innerText = `${count} Items`;
+        document.getElementById('cartPrice').innerText = total;
+
+        const msgBox = document.getElementById('freeShipMsg');
+        if (subtotal > 0 && subtotal < 150) {
+            msgBox.innerHTML = `Add ₹${150 - subtotal} more for <span style="color:var(--gold)">FREE Delivery</span>`;
+        } else if (subtotal >= 150) {
+            msgBox.innerHTML = `🎉 Congratulations! <span style="color:var(--village-green)">Free Delivery Applied</span>`;
+        }
     }
-}
+
+    function toggleCheckout(show) {
+        const dr = document.getElementById('checkoutDrawer');
+        dr.style.display = show ? 'flex' : 'none';
+        if(show) {
+            const items = Object.values(cart);
+            const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
+            const delFee = (subtotal >= 150) ? 0 : 30;
+            
+            document.getElementById('billItems').innerHTML = items.map(i => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <span>${i.name} (x${i.qty})</span>
+                    <span>₹${i.price * i.qty}</span>
+                </div>`).join('');
+                
+            document.getElementById('billSub').innerText = `₹${subtotal}`;
+            document.getElementById('billDel').innerText = delFee === 0 ? "FREE" : `₹${delFee}`;
+            document.getElementById('billGrand').innerText = `₹${Math.max(0, subtotal + delFee - 10)}`;
+        }
+    }
+
     function processOrder(type) {
         const addr = document.getElementById('villageAddress').value;
-        if(!addr) return alert("Bhaiya, Gaon ka pata ya Landmark (Mandir/School) toh daal do!");
-        const total = Object.values(cart).reduce((s, i) => s + (i.price * i.qty), 0) - 10;
+        if(!addr) return alert("Bhaiya, Gaon ka pata ya Landmark toh daal do!");
+        
+        const items = Object.values(cart);
+        const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
+        const delFee = (subtotal >= 150) ? 0 : 30;
+        const finalTotal = Math.max(0, subtotal + delFee - 10);
+
         if(type === 'QR') {
             const upi = "aniketpratap70016@oksbi";
-            const link = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${upi}%26pn=Dukanwaala%26am=${total}%26cu=INR`;
+            const link = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${upi}%26pn=Dukanwaala%26am=${finalTotal}%26cu=INR`;
             document.getElementById('qrTarget').innerHTML = `<img src="${link}" style="width:200px;">`;
-            document.getElementById('qrAmt').innerText = `Pay ₹${total}`;
+            document.getElementById('qrAmt').innerText = `Pay ₹${finalTotal}`;
             document.getElementById('qrModal').style.display = 'flex';
         } else {
-            sendWhatsApp(addr, total);
+            sendWhatsApp(addr, finalTotal);
         }
     }
 
@@ -523,7 +526,7 @@
         Object.values(cart).forEach(i => {
             msg += `• ${i.name} [x${i.qty}] - ₹${i.price * i.qty}%0A`;
         });
-        msg += `%0A*Bill Total: ₹${total}*%0A*Address:* ${addr}%0A%0A_Bhaiya, Babuganj se taaza maal 15 min mein bhej dena!_`;
+        msg += `%0A*Bill Total (incl. delivery): ₹${total}*%0A*Address:* ${addr}%0A%0A_Bhaiya, jaldi bhej dena!_`;
         window.open(`https://wa.me/918881070016?text=${msg}`);
     }
 
