@@ -28,11 +28,16 @@
             color: var(--text); overflow-x: hidden;
         }
 
-        /* SPARKLE EFFECT */
+        #toast-msg {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.85); color: white; padding: 15px 30px;
+            border-radius: 50px; font-weight: 800; display: none; z-index: 10001;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 2px solid var(--accent);
+        }
+
         .sparkle-text {
             position: relative;
             display: inline-block;
-            color: #000 !important; 
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             animation: sparkle-glow 2s infinite alternate;
         }
@@ -41,7 +46,6 @@
             100% { filter: brightness(1.2) drop-shadow(0 0 5px #ffd700); }
         }
 
-        /* FLOATING ROSE */
         .floating-rose {
             position: absolute; font-size: 24px; animation: float-rose 4s ease-in-out infinite;
             opacity: 0.8; pointer-events: none;
@@ -51,7 +55,6 @@
             50% { transform: translateY(-20px) rotate(20deg); }
         }
 
-        /* WELCOME SCREEN */
         #welcome-screen {
             position: fixed; inset: 0; background: linear-gradient(135deg, var(--primary) 0%, #1a0033 100%);
             z-index: 10000; display: flex; flex-direction: column;
@@ -65,7 +68,7 @@
         }
         .founder-tag { 
             font-family: 'Dancing Script', cursive; font-size: 26px; margin-bottom: 30px; 
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; gap: 10px; color: white;
         }
         
         .enter-btn {
@@ -94,18 +97,22 @@
             border-radius: 5px; font-weight: 900; font-size: 12px; float: right;
             animation: bounceIn 1s infinite;
         }
+
         .hero {
             background: linear-gradient(135deg, var(--primary), #6300b4);
             margin: 15px; border-radius: 25px; padding: 25px; color: white; position: relative;
             overflow: hidden; box-shadow: 0 15px 35px rgba(60, 0, 109, 0.2);
         }
-        .hero h2 { font-family: 'Playfair Display'; font-size: 34px; margin: 0; position: relative; z-index: 2; }
-        .hero p { font-size: 16px; opacity: 0.9; margin-top: 5px; }
-
-        .local-badge {
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
-            padding: 8px 15px; border-radius: 12px; margin-top: 15px;
-            font-size: 13px; border: 1px solid rgba(255,255,255,0.3);
+        .hero h2 { font-family: 'Playfair Display'; font-size: 34px; margin: 0; }
+        
+        .coupon-box {
+            margin-top: 20px; background: rgba(255,255,255,0.1); padding: 15px;
+            border-radius: 15px; border: 1px dashed rgba(255,255,255,0.4);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .apply-btn {
+            background: var(--gold); color: black; border: none; padding: 8px 15px;
+            border-radius: 10px; font-weight: 800; font-size: 12px; cursor: pointer;
         }
 
         .search-area { padding: 0 15px; margin-top: -25px; position: relative; z-index: 5; }
@@ -113,42 +120,39 @@
             background: white; border-radius: 20px; padding: 18px;
             display: flex; align-items: center; gap: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
-        .search-bar input { border: none; flex: 1; font-size: 16px; font-family: 'Outfit'; }
+        .search-bar input { border: none; flex: 1; font-size: 16px; font-family: 'Outfit'; width: 100%; }
 
         .cat-row { display: flex; overflow-x: auto; padding: 20px 15px; gap: 12px; scrollbar-width: none; }
         .cat-chip {
             padding: 12px 25px; background: white; border-radius: 15px;
             white-space: nowrap; font-size: 14px; font-weight: 700; border: 1px solid #eee;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03); transition: 0.3s;
         }
-        .cat-chip.active { background: var(--primary); color: white; transform: translateY(-3px); }
+        .cat-chip.active { background: var(--primary); color: white; }
 
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; padding-bottom: 150px; }
         .product-card {
-            background: white; border-radius: 25px; padding: 15px;
-            transition: 0.3s; position: relative; border: 1px solid #f0f0f0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            background: white; border-radius: 25px; padding: 15px; position: relative;
+            border: 1px solid #f0f0f0; transition: 0.3s;
         }
         .p-badge {
             position: absolute; top: 10px; left: 10px; background: var(--accent);
-            color: white; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; z-index: 1;
+            color: white; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 800;
         }
         .p-img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; }
-        .p-title { font-size: 15px; font-weight: 600; height: 40px; overflow: hidden; line-height: 1.3; }
-        .p-price { font-size: 20px; font-weight: 800; color: var(--primary); }
-        .p-old { font-size: 12px; text-decoration: line-through; color: #999; margin-left: 5px; }
+        .p-title { font-size: 14px; font-weight: 600; height: 38px; overflow: hidden; }
+        .p-price { font-size: 18px; font-weight: 800; color: var(--primary); }
         
         .add-btn {
             background: #f8f9ff; color: var(--primary); border: 2px solid #eee;
-            width: 100%; padding: 10px; border-radius: 15px; font-weight: 800;
-            margin-top: 10px; cursor: pointer; transition: 0.3s;
+            width: 100%; padding: 10px; border-radius: 12px; font-weight: 800;
+            margin-top: 10px; cursor: pointer;
         }
 
         .cart-bar {
             position: fixed; bottom: 25px; left: 15px; right: 15px;
-            background: var(--primary); color: white; padding: 18px 25px;
-            border-radius: 25px; display: none; justify-content: space-between;
-            align-items: center; z-index: 2000; box-shadow: 0 20px 50px rgba(60, 0, 109, 0.4);
+            background: var(--primary); color: white; padding: 18px;
+            border-radius: 20px; display: none; justify-content: space-between;
+            align-items: center; z-index: 2000; box-shadow: 0 15px 40px rgba(60, 0, 109, 0.4);
         }
 
         .drawer {
@@ -156,52 +160,41 @@
             display: none; align-items: flex-end; z-index: 3000; backdrop-filter: blur(10px);
         }
         .sheet {
-            background: white; width: 100%; border-radius: 40px 40px 0 0;
-            padding: 30px; max-height: 90vh; overflow-y: auto;
+            background: white; width: 100%; border-radius: 35px 35px 0 0;
+            padding: 25px; max-height: 85vh; overflow-y: auto;
         }
+        
         .address-box {
-            background: #fdf2f5; border: 2px solid #ffebf0; padding: 20px;
-            border-radius: 20px; margin-bottom: 20px;
+            background: #fdf2f5; border: 1px solid #ffebf0; padding: 15px;
+            border-radius: 15px; margin-bottom: 20px;
         }
         .address-box input {
-            width: 100%; border: none; background: transparent; 
-            font-size: 16px; font-weight: 600; margin-top: 10px; border-bottom: 2px solid var(--accent);
-            padding: 5px 0;
+            width: 100%; border: none; background: transparent; font-family: 'Outfit';
+            font-size: 16px; border-bottom: 2px solid var(--accent); padding: 5px 0;
         }
 
         .btn-whatsapp {
             background: #25D366; color: white; border: none; width: 100%;
-            padding: 20px; border-radius: 20px; font-weight: 800; font-size: 16px;
-            margin-bottom: 12px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-        }
-        .btn-upi {
-            background: var(--primary); color: white; border: none; width: 100%;
-            padding: 20px; border-radius: 20px; font-weight: 800; font-size: 16px;
+            padding: 18px; border-radius: 15px; font-weight: 800; font-size: 16px;
         }
 
         #qrModal {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-            display: none; align-items: center; justify-content: center; z-index: 9000; padding: 20px;
+            display: none; align-items: center; justify-content: center; z-index: 9000;
         }
-        .qr-card { background: white; padding: 30px; border-radius: 30px; text-align: center; width: 100%; }
-        #toast-msg {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.85); color: white; padding: 15px 30px;
-            border-radius: 50px; font-weight: 800; display: none; z-index: 10001;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 2px solid var(--accent);
-        }
+        .qr-card { background: white; padding: 25px; border-radius: 25px; text-align: center; width: 90%; }
     </style>
 </head>
 <body>
 
-<div id="toast-msg">Item Bag Me Aa Gaya! 👜</div>
+<div id="toast-msg">Jholi mein aa gaya! 👜</div>
 
-<div id="welcome-screen" class="animate__animated">
+<div id="welcome-screen">
     <span class="floating-rose" style="top:10%; left:10%;">🌹</span>
-    <span class="floating-rose" style="top:20%; right:15%; animation-delay: 1s;">🌹</span>
+    <span class="floating-rose" style="top:30%; right:15%;">🌹</span>
     <div class="welcome-logo animate__animated animate__zoomIn">Dukaan Wala</div>
-    <div class="founder-tag animate__animated animate__fadeInUp animate__delay-1s">
-        <span class="sparkle-text">Thakur Ravi Singh</span>
+    <div class="founder-tag animate__animated animate__fadeInUp">
+        <span class="sparkle-text" style="color:white !important;">Thakur Ravi Singh</span>
         <span>🌹</span>
     </div>
     <button class="enter-btn animate__animated animate__pulse animate__infinite" onclick="enterStore()">Dukan Me Pravesh Karein</button>
@@ -209,7 +202,7 @@
 
 <div class="mandi-ticker">
     <div class="ticker-content">
-        🔥 Babuganj Ki Mandi Ab Aapke Phone Mein! &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 🏠 Salempur Se Dadaura Tak Delivery
+        🔥 Babuganj Ki Mandi Ab Aapke Phone Mein! &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 🏠 Salempur Se Dadaura Tak Free Delivery
     </div>
 </div>
 
@@ -219,11 +212,16 @@
 </header>
 <div class="hero">
     <div style="font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 5px;">GAON KA APNA CHETAK</div>
-    <h1 style="font-size: 28px; font-weight: 800; color: #0f8;">Dukan wala</h1>
-    <h5 style="font-style: italic;color: #ff3269; margin: 5px 0;">Thakur Ravi Singh <br> Founder </h5>
-    <p>Sab kuch paayein shehar jaisi speed mein!</p>
-    <div onclick="applyCoupon()" id="couponBtn" style="margin-top:20px; background:white; color:var(--primary); padding:12px; border-radius:15px; text-align:center; cursor:pointer; font-weight:800; border: 2px dashed var(--primary);">
-        APPLY GAONWALO DISCOUNT
+    <h1 style="font-size: 28px; font-weight: 800; color: #0f8; margin:0;">Dukan wala</h1>
+    <h5 style="font-style: italic; color: #ff3269; margin: 5px 0;">Thakur Ravi Singh <br> Founder </h5>
+    <p style="margin:5px 0;">Sab kuch paayein shehar jaisi speed mein!</p>
+    
+    <div class="coupon-box">
+        <div>
+            <div style="font-size:10px; opacity:0.8">LOCAL DISCOUNT</div>
+            <div style="font-weight:800; font-size:16px" id="couponCodeDisplay">GAONWALO</div>
+        </div>
+        <button class="apply-btn" id="applyBtn" onclick="applyCoupon()">APPLY NOW</button>
     </div>
 </div>
 
@@ -242,6 +240,17 @@
 
 <div class="grid" id="productGrid"></div>
 
+<div class="founder-footer">
+    <div style="text-align:center; padding:40px 20px; background:white; border-radius:30px 30px 0 0;">
+        <span style="font-size:30px;">🌹</span>
+        <p style="color: #333; line-height: 1.6; font-style: italic; font-size: 16px;">
+            "Humara Gaon ab peeche nahi rahega. Jo shehar mein milta hai, wahi ab aapke ghar 15 minute mein pahunchega."
+        </p>
+        <div class="founder-sign sparkle-text" style="color:black !important; font-size:28px;">Thakur Ravi Singh</div>
+        <p style="font-size: 10px; color: #999; letter-spacing: 2px;">FOUNDER & VISIONARY</p>
+    </div>
+</div>
+
 <script>
     const products = [
         { id: 101, name: "Special Anarsa (1kg)", price: 50, old: 70, cat: "Snacks", img: "https://m.media-amazon.com/images/I/718y6K-mO1L._SL1500_.jpg" },
@@ -249,10 +258,8 @@
         { id: 1, name: "Aashirvaad Atta (5kg)", price: 210, old: 245, cat: "Groceries", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300" },
         { id: 2, name: "Fortune Oil (1L)", price: 155, old: 175, cat: "Groceries", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
         { id: 3, name: "Amul Gold Milk (1L)", price: 66, old: 68, cat: "Dairy", img: "https://images.unsplash.com/photo-1550583724-125581cc2532?w=300" },
-        { id: 16, name: "Gul Manjan", price: 20, old: 25, cat: "Daily", img: "https://m.media-amazon.com/images/I/71YyS2G0uDL._SL1500_.jpg" },
+        { id: 4, name: "Sugar / Chini (1kg)", price: 42, old: 48, cat: "Groceries", img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=300" },
         { id: 5, name: "Fresh Aloo 2kg", price: 45, old: 60, cat: "Vegetables", img: "https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?w=300" },
-        { id: 6, name: "Desi Onions 1kg", price: 35, old: 50, cat: "Vegetables", img: "https://images.unsplash.com/photo-1508747703725-719777637510?w=300" },
-        { id: 9, name: "Bake-On Cake", price: 250, old: 300, cat: "Snacks", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300" },
         { id: 20, name: "Coca Cola (1.25L)", price: 95, old: 100, cat: "Snacks", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" }
     ];
     let cart = {};
@@ -272,7 +279,7 @@
     function renderProducts(data) {
         const grid = document.getElementById('productGrid');
         grid.innerHTML = data.map(p => `
-            <div class="product-card">
+            <div class="product-card animate__animated animate__fadeIn">
                 <span class="p-badge">SAVE ₹${p.old - p.price}</span>
                 <img src="${p.img}" class="p-img">
                 <div class="p-title">${p.name}</div>
@@ -292,14 +299,16 @@
     }
 
     function applyCoupon() {
-        couponApplied = true;
-        document.getElementById('couponBtn').innerHTML = "✅ GAONWALO APPLIED (-₹10)";
-        document.getElementById('couponBtn').style.background = "#e1fdec";
-        alert("Thakur Ravi Singh ki taraf se ₹10 ka discount mil gaya!");
-        updateCartUI();
+        if(!couponApplied) {
+            couponApplied = true;
+            const btn = document.getElementById('applyBtn');
+            btn.innerText = "APPLIED";
+            btn.style.background = "#00b894";
+            btn.style.color = "white";
+            alert("Thakur Ravi Singh ki taraf se ₹10 ka discount apply ho gaya!");
+            updateCartUI();
+        }
     }
-
-   
 
     function updateCartUI() {
         const items = Object.values(cart);
@@ -311,8 +320,8 @@
         // Delivery logic: ₹150 se niche ₹30 charge
         const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
         
-        // COUPON FIX: Sirf tabhi minus hoga jab 'couponApplied' true ho
-        const discount = (couponApplied === true) ? 10 : 0;
+        // Discount logic: Sirf tab jab button dabaya ho
+        const discount = (couponApplied) ? 10 : 0;
         
         const total = Math.max(0, subtotal + delFee - discount);
 
@@ -330,23 +339,27 @@
             items.forEach(i => subtotal += (Number(i.price) * Number(i.qty)));
             
             const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
-            const discount = (couponApplied === true) ? 10 : 0;
+            const discount = (couponApplied) ? 10 : 0;
             
             document.getElementById('billItems').innerHTML = items.map(i => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:14px;">
                     <span>${i.name} (x${i.qty})</span>
                     <span>₹${i.price * i.qty}</span>
                 </div>`).join('');
             
-            document.getElementById('billSub').innerText = `₹${subtotal}`;
-            // Yahan final display fix
-            document.getElementById('billGrand').innerText = `₹${subtotal + delFee - discount}`;
+            let billHTML = `
+                <div style="display:flex; justify-content:space-between; opacity:0.7;"><span>Subtotal</span><span>₹${subtotal}</span></div>
+                <div style="display:flex; justify-content:space-between; color:var(--village-green);"><span>Delivery Fee</span><span>+ ₹${delFee}</span></div>
+                ${couponApplied ? `<div style="display:flex; justify-content:space-between; color:var(--accent);"><span>Coupon Discount</span><span>- ₹${discount}</span></div>` : ''}
+                <div style="display:flex; justify-content:space-between; font-size:22px; font-weight:900; color:var(--primary); margin-top:15px; border-top:1px solid #eee; padding-top:10px;">
+                    <span>Total</span><span>₹${subtotal + delFee - discount}</span>
+                </div>`;
+            
+            document.getElementById('billSummary').innerHTML = billHTML;
         }
     }
-            
-      
 
-    function processOrder(type) {
+    function processOrder() {
         const addr = document.getElementById('villageAddress').value;
         if(!addr) return alert("Pata toh likhiye bhaiya!");
         
@@ -354,11 +367,12 @@
         let subtotal = 0;
         items.forEach(i => subtotal += (i.price * i.qty));
         const delFee = (subtotal < 150) ? 30 : 0;
-        const total = subtotal + delFee - (couponApplied ? 10 : 0);
+        const discount = couponApplied ? 10 : 0;
+        const total = subtotal + delFee - discount;
         
         let msg = `*🌹 NAYA ORDER - DUKAN WALA 🌹*%0A`;
         items.forEach(i => msg += `• ${i.name} [x${i.qty}]%0A`);
-        msg += `%0A*Total: ₹${total}*%0A*Address:* ${addr}`;
+        msg += `%0A*Subtotal: ₹${subtotal}*%0A*Delivery: ₹${delFee}*%0A*Discount: ₹${discount}*%0A*Grand Total: ₹${total}*%0A%0A*Pata:* ${addr}`;
         
         window.open(`https://wa.me/918881070016?text=${msg}`);
     }
@@ -375,26 +389,25 @@
     }
 </script>
 
-<div class="founder-footer">
-    <div class="founder-sign sparkle-text">Thakur Ravi Singh</div>
-    <p style="font-size: 12px; color: #999; margin-top: 5px;">FOUNDER & VISIONARY</p>
+<div class="cart-bar" id="cartBar" onclick="toggleCheckout(true)">
+    <div><span id="cartQty">0 Items</span> | <b>₹ <span id="cartPrice">0</span></b></div>
+    <div>VIEW BAG <i class="fas fa-shopping-bag"></i></div>
 </div>
 
 <div class="drawer" id="checkoutDrawer" onclick="if(event.target==this) toggleCheckout(false)">
     <div class="sheet">
-        <h2 style="font-family:'Playfair Display'">Aapka Bill</h2>
+        <div style="width:40px; height:5px; background:#ddd; border-radius:10px; margin:0 auto 20px;"></div>
+        <h2 style="font-family:'Playfair Display'; margin-bottom:15px;">Aapka Bill</h2>
+        <div id="billItems" style="margin-bottom:20px; max-height:200px; overflow-y:auto;"></div>
+        <div id="billSummary" style="margin-bottom:20px; background:#f9f9f9; padding:15px; border-radius:15px;"></div>
         <div class="address-box">
-            <input type="text" id="villageAddress" placeholder="Ghar ka pata (Landmark)">
+            <input type="text" id="villageAddress" placeholder="Ghar ka pata (Landmark ke sath)">
         </div>
-        <div id="billItems"></div>
-        <div style="border-top:1px solid #eee; padding-top:15px; margin-top:15px;">
-            <div style="display:flex; justify-content:space-between;"><span>Subtotal</span><span id="billSub"></span></div>
-            <div style="display:flex; justify-content:space-between; font-size:24px; font-weight:900; color:var(--primary); margin-top:10px;">
-                <span>Total</span><span id="billGrand"></span>
-            </div>
-        </div>
-        <button class="btn-whatsapp" style="margin-top:20px;" onclick="processOrder()">WhatsApp Par Order Karein</button>
+        <button class="btn-whatsapp" onclick="processOrder()">
+            <i class="fab fa-whatsapp"></i> WhatsApp Par Order Karein
+        </button>
     </div>
 </div>
+
 </body>
 </html>
