@@ -28,7 +28,6 @@
             color: var(--text); overflow-x: hidden;
         }
 
-        /* --- NEW: SPARKLE EFFECT --- */
         .sparkle-text {
             position: relative;
             display: inline-block;
@@ -41,7 +40,6 @@
             100% { filter: brightness(1.5) drop-shadow(0 0 5px #fff); }
         }
 
-        /* --- NEW: FLOATING ROSE --- */
         .floating-rose {
             position: absolute;
             font-size: 24px;
@@ -54,7 +52,6 @@
             50% { transform: translateY(-20px) rotate(20deg); }
         }
 
-        /* --- 1. FULL PAGE WELCOME SCREEN --- */
         #welcome-screen {
             position: fixed; inset: 0; background: linear-gradient(135deg, var(--primary) 0%, #1a0033 100%);
             z-index: 10000; display: flex; flex-direction: column;
@@ -86,7 +83,6 @@
         }
         .enter-btn:hover { transform: scale(1.05); }
 
-        /* --- 2. HEADER & TICKER --- */
         .header {
             background: var(--white); padding: 12px 15px; position: sticky; top: 0;
             z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -113,7 +109,6 @@
             animation: bounceIn 1s infinite;
         }
 
-        /* --- 3. HERO --- */
         .hero {
             background: linear-gradient(135deg, var(--primary), #6300b4);
             margin: 15px; border-radius: 25px; padding: 25px; color: white; position: relative;
@@ -132,7 +127,6 @@
             border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* --- 4. SEARCH & CATEGORY --- */
         .search-area { padding: 0 15px; margin-top: -25px; position: relative; z-index: 5; }
         .search-bar {
             background: white; border-radius: 20px; padding: 18px;
@@ -148,7 +142,6 @@
         }
         .cat-chip.active { background: var(--primary); color: white; transform: translateY(-3px); }
 
-        /* --- 5. PRODUCT GRID --- */
         .grid {
             display: grid; grid-template-columns: repeat(2, 1fr);
             gap: 15px; padding: 15px; padding-bottom: 150px;
@@ -175,7 +168,6 @@
         }
         .add-btn:active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* --- 6. QUOTE STRIP --- */
         .quote-strip {
             background: var(--white); padding: 20px; text-align: center;
             font-size: 15px; font-weight: 600; color: var(--primary);
@@ -183,14 +175,12 @@
             line-height: 1.5;
         }
 
-        /* --- 7. FOOTER --- */
         .founder-footer {
             background: white; padding: 50px 30px; text-align: center; margin-top: 20px;
             border-radius: 40px 40px 0 0;
         }
         .founder-sign { font-family: 'Dancing Script', cursive; font-size: 32px; color:black; margin-top: 10px; }
 
-        /* --- 8. CART & CHECKOUT --- */
         .cart-bar {
             position: fixed; bottom: 25px; left: 15px; right: 15px;
             background: var(--primary); color: white; padding: 18px 25px;
@@ -227,7 +217,6 @@
             padding: 20px; border-radius: 20px; font-weight: 800; font-size: 16px;
         }
 
-        /* QR MODAL */
         #qrModal {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             display: none; align-items: center; justify-content: center; z-index: 9000; padding: 20px;
@@ -281,12 +270,12 @@
         <i class="fas fa-store"></i> Babuganj Mandi Rates Par Ghar Baithe Mangwayein
     </div>
     
-    <div onclick="applyCoupon()" style="cursor:pointer; margin-top:20px; background:rgba(255,255,255,0.1); padding:12px; border-radius:15px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="margin-top:20px; background:rgba(255,255,255,0.1); padding:12px; border-radius:15px; display:flex; justify-content:space-between; align-items:center;">
         <div>
             <div style="font-size:10px; opacity:0.8">LOCAL DISCOUNT</div>
             <div style="font-weight:800; font-size:18px">GAONWALO</div>
         </div>
-        <div style="background:white; color:var(--primary); padding:6px 12px; border-radius:10px; font-weight:800; font-size:12px">APPLY</div>
+        <div id="couponBtn" onclick="applyCoupon()" style="background:white; color:var(--primary); padding:6px 12px; border-radius:10px; font-weight:800; font-size:12px; cursor:pointer;">APPLY</div>
     </div>
 </div>
 
@@ -330,7 +319,7 @@
         <div>
             <div id="cartQty" style="font-weight: 800; font-size: 18px;">0 Items</div>
             <div id="freeShipMsg" style="font-size: 11px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px; font-weight: 600;"></div>
-            <div style="font-size: 11px; opacity: 0.9;">CHETAK SPEED DELIVERY</div>
+            <div style="font-size: 11px; opacity: 0.9;">FREE CHETAK DELIVERY</div>
         </div>
     </div>
     <div style="text-align: right;">
@@ -343,7 +332,7 @@
     <div class="sheet">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
             <h2 style="margin:0; font-family:'Playfair Display'">Aapka Bill</h2>
-            <i class="fas fa-times-circle fa-2x" style="color:#eee;" onclick="toggleCheckout(false)"></i>
+            <i class="fas fa-times-circle fa-2x" style="color:#eee; cursor:pointer;" onclick="toggleCheckout(false)"></i>
         </div>
 
         <div class="address-box">
@@ -358,10 +347,10 @@
                 <span>Samaan Total</span><span id="billSub">₹0</span>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:10px; color:var(--village-green); font-weight:700;">
-                <span>Delivery Charge</span><span id="billDel">FREE</span>
+                <span>Chetak Delivery</span><span id="billDel">FREE</span>
             </div>
-            <div id="discountRow" style="display:none; justify-content:space-between; margin-bottom:15px; color:var(--accent); font-weight:700;">
-                <span>Gaon Discount</span><span>-₹10</span>
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:var(--accent); font-weight:700;">
+                <span>Gaon Discount</span><span id="billDisc">-₹0</span>
             </div>
             <div style="border-top: 2px solid #eee; padding-top: 15px; display:flex; justify-content:space-between; font-size: 26px; font-weight: 900; color: var(--primary);">
                 <span>Kul Paisa</span><span id="billGrand">₹0</span>
@@ -372,8 +361,11 @@
             <button class="btn-whatsapp" onclick="processOrder('WhatsApp')">
                 <i class="fab fa-whatsapp"></i> WHATSAPP PAR ORDER KAREIN
             </button>
-            <button class="btn-upi" onclick="processOrder('QR')">
-                <i class="fas fa-qrcode"></i> PAY & ORDER NOW
+            <button class="btn-upi" onclick="processOrder('QR')" style="margin-bottom: 12px;">
+                <i class="fas fa-qrcode"></i> PAY ONLINE (UPI/QR)
+            </button>
+            <button class="btn-upi" onclick="processOrder('COD')" style="background: #555;">
+                <i class="fas fa-hand-holding-usd"></i> CASH ON DELIVERY (COD)
             </button>
         </div>
     </div>
@@ -406,13 +398,13 @@
         { id: 13, name: "Lays Party Pack", price: 50, old: 50, cat: "Snacks", img: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300" },
         { id: 14, name: "Coca Cola (1.25L)", price: 95, old: 100, cat: "Snacks", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" },
         { id: 15, name: "Surf Excel (500g)", price: 75, old: 85, cat: "Groceries", img: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png" },
-        { id: 16, name: "Gul Manjan (Red Label)", price: 20, old: 25, cat: "Daily", img: "https://m.media-amazon.com/images/I/71YyS2G0uDL._SL1500_.jpg" },
+        { id: 16, name: "Gul Manjan (Red Label)", price: 30, old: 35, cat: "Daily", img: "https://m.media-amazon.com/images/I/71YyS2G0uDL._SL1500_.jpg" },
         { id: 17, name: "Dant Kanti (Small)", price: 10, old: 15, cat: "Daily", img: "https://m.media-amazon.com/images/I/61M6E7WvQBL._SL1000_.jpg" },
         { id: 18, name: "Parle-G Biscuit", price: 10, old: 10, cat: "Snacks", img: "https://m.media-amazon.com/images/I/71W+k3L+GUL._SL1500_.jpg" },
         { id: 19, name: "Rin Soap Bar", price: 10, old: 10, cat: "Daily", img: "https://m.media-amazon.com/images/I/51mZl2-h+pL._SL1000_.jpg" },
         { id: 20, name: "Amul Dahi", price: 30, old: 32, cat: "Dairy", img: "https://images.unsplash.com/photo-1550583724-125581cc2532?w=300" },
-        { id: 21, name: "Anarsa (Sugar Coated)", price: 50, old: 60, cat: "Snacks", img: "https://images.unsplash.com/photo-1589119908995-c6837fa14848?w=300" },
-        { id: 22, name: "Spicy Chaat (Plate)", price: 30, old: 40, cat: "Snacks", img: "https://images.unsplash.com/photo-1606491956689-2ea8c5119c85?w=300" }
+        { id: 21, name: "Anarsa (Mithaas) 1kg", price: 50, old: 65, cat: "Snacks", img: "https://5.imimg.com/data5/SELLER/Default/2022/11/XF/OI/XG/41221142/anarsa-500x500.jpg" },
+        { id: 22, name: "Chaat (Kunda Special Plate)", price: 30, old: 45, cat: "Snacks", img: "https://static.toiimg.com/photo/83632313.cms" }
     ];
 
     const quotes = [
@@ -442,7 +434,7 @@
         const grid = document.getElementById('productGrid');
         grid.innerHTML = data.map(p => `
             <div class="product-card animate__animated animate__fadeInUp">
-                <span class="p-badge">NEW PRICE</span>
+                <span class="p-badge">${p.name.includes("Gul Manjan") ? "SPECIAL" : "NEW PRICE"}</span>
                 <img src="${p.img}" class="p-img">
                 <div class="p-title">${p.name}</div>
                 <div style="margin: 8px 0;">
@@ -461,10 +453,12 @@
     }
 
     function applyCoupon() {
-        if(Object.keys(cart).length === 0) return alert("Pehle bag mein kuch saamaan toh daalo!");
         couponApplied = true;
+        document.getElementById('couponBtn').innerText = "APPLIED";
+        document.getElementById('couponBtn').style.background = "#00b894";
+        document.getElementById('couponBtn').style.color = "white";
         updateCartUI();
-        alert("🎉 GAONWALO Coupon Applied! ₹10 ki bachat ho gayi.");
+        alert("🎉 Coupon Lag Gaya! ₹10 ki chhoot mil gayi.");
     }
 
     function updateCartUI() {
@@ -472,17 +466,16 @@
         const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
         const count = items.reduce((s, i) => s + i.qty, 0);
         
-        // Fix: Under 150 -> 30 delivery, 150+ -> Free
         const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
         const discount = couponApplied ? 10 : 0;
-        const finalTotal = Math.max(0, subtotal + delFee - discount);
+        const total = Math.max(0, subtotal + delFee - discount);
 
         document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
         document.getElementById('cartQty').innerText = `${count} Items`;
-        document.getElementById('cartPrice').innerText = finalTotal;
+        document.getElementById('cartPrice').innerText = total;
 
         const msgBox = document.getElementById('freeShipMsg');
-        if (subtotal < 150 && subtotal > 0) {
+        if (subtotal > 0 && subtotal < 150) {
             msgBox.innerHTML = `Add ₹${150 - subtotal} more for <span style="color:var(--gold)">FREE Delivery</span>`;
         } else if (subtotal >= 150) {
             msgBox.innerHTML = `🎉 Congratulations! <span style="color:var(--village-green)">Free Delivery Applied</span>`;
@@ -495,7 +488,7 @@
         if(show) {
             const items = Object.values(cart);
             const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-            const delFee = (subtotal >= 150) ? 0 : 30;
+            const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
             const discount = couponApplied ? 10 : 0;
             
             document.getElementById('billItems').innerHTML = items.map(i => `
@@ -506,11 +499,8 @@
                 
             document.getElementById('billSub').innerText = `₹${subtotal}`;
             document.getElementById('billDel').innerText = delFee === 0 ? "FREE" : `₹${delFee}`;
-            
-            const discRow = document.getElementById('discountRow');
-            discRow.style.display = couponApplied ? 'flex' : 'none';
-            
-            document.getElementById('billGrand').innerText = `₹${Math.max(0, subtotal + delFee - discount)}`;
+            document.getElementById('billDisc').innerText = `-₹${discount}`;
+            document.getElementById('billGrand').innerText = `₹${subtotal + delFee - discount}`;
         }
     }
 
@@ -520,9 +510,9 @@
         
         const items = Object.values(cart);
         const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-        const delFee = (subtotal >= 150) ? 0 : 30;
+        const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
         const discount = couponApplied ? 10 : 0;
-        const finalTotal = Math.max(0, subtotal + delFee - discount);
+        const finalTotal = subtotal + delFee - discount;
 
         if(type === 'QR') {
             const upi = "aniketpratap70016@oksbi";
@@ -530,30 +520,27 @@
             document.getElementById('qrTarget').innerHTML = `<img src="${link}" style="width:200px;">`;
             document.getElementById('qrAmt').innerText = `Pay ₹${finalTotal}`;
             document.getElementById('qrModal').style.display = 'flex';
+        } else if (type === 'COD') {
+            alert("✅ Order Confirm! Cash taiyar rakhna, Chetak nikal raha hai.");
+            sendWhatsApp(addr, finalTotal, "CASH ON DELIVERY");
         } else {
-            sendWhatsApp(addr, finalTotal);
+            sendWhatsApp(addr, finalTotal, "WHATSAPP ORDER");
         }
     }
 
-    function sendWhatsApp(addr, total) {
+    function sendWhatsApp(addr, total, mode) {
         let msg = `*🌹 NAYA GAON ORDER - DUKAN WAALA 🌹*%0A`;
-        msg += `_Salempur-Dadaura Chetak Delivery_%0A%0A`;
+        msg += `_Salempur-Dadaura Chetak Delivery_%0A`;
+        msg += `*Payment Mode:* ${mode}%0A%0A`;
         Object.values(cart).forEach(i => {
             msg += `• ${i.name} [x${i.qty}] - ₹${i.price * i.qty}%0A`;
         });
-        if(couponApplied) msg += `%0A_Coupon Applied: GAONWALO (-₹10)_%0A`;
-        msg += `%0A*Bill Total: ₹${total}*%0A*Address:* ${addr}%0A%0A_Bhaiya, Babuganj se taaza maal 15 min mein bhej dena!_`;
+        msg += `%0A*Bill Total: ₹${total}*%0A*Address:* ${addr}%0A%0A_Bhaiya, jaldi bhej dena!_`;
         window.open(`https://wa.me/918881070016?text=${msg}`);
     }
 
     function filterCat(cat) {
-        document.querySelectorAll('.cat-chip').forEach(c => {
-            if(cat === 'All') {
-                c.classList.toggle('active', c.innerText === 'Sab Kuch');
-            } else {
-                c.classList.toggle('active', c.innerText.toLowerCase().includes(cat.toLowerCase()));
-            }
-        });
+        document.querySelectorAll('.cat-chip').forEach(c => c.classList.toggle('active', c.innerText.includes(cat) || (cat==='All' && c.innerText==='Sab Kuch')));
         const filtered = cat === 'All' ? products : products.filter(p => p.cat === cat);
         renderProducts(filtered);
     }
