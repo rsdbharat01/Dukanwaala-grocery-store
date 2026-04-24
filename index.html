@@ -299,15 +299,21 @@
         updateCartUI();
     }
 
+   
+
     function updateCartUI() {
         const items = Object.values(cart);
         let subtotal = 0;
-        items.forEach(i => subtotal += (i.price * i.qty));
+        items.forEach(i => subtotal += (Number(i.price) * Number(i.qty)));
         
         const count = items.reduce((s, i) => s + i.qty, 0);
-        // Delivery logic: ₹150 se kam par ₹30
+        
+        // Delivery logic: ₹150 se niche ₹30 charge
         const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
-        const discount = (subtotal > 0 && couponApplied) ? 10 : 0;
+        
+        // COUPON FIX: Sirf tabhi minus hoga jab 'couponApplied' true ho
+        const discount = (couponApplied === true) ? 10 : 0;
+        
         const total = Math.max(0, subtotal + delFee - discount);
 
         document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
@@ -321,9 +327,10 @@
         if(show) {
             const items = Object.values(cart);
             let subtotal = 0;
-            items.forEach(i => subtotal += (i.price * i.qty));
+            items.forEach(i => subtotal += (Number(i.price) * Number(i.qty)));
+            
             const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
-            const discount = (subtotal > 0 && couponApplied) ? 10 : 0;
+            const discount = (couponApplied === true) ? 10 : 0;
             
             document.getElementById('billItems').innerHTML = items.map(i => `
                 <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
@@ -332,9 +339,12 @@
                 </div>`).join('');
             
             document.getElementById('billSub').innerText = `₹${subtotal}`;
+            // Yahan final display fix
             document.getElementById('billGrand').innerText = `₹${subtotal + delFee - discount}`;
         }
     }
+            
+      
 
     function processOrder(type) {
         const addr = document.getElementById('villageAddress').value;
