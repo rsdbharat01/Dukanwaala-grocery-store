@@ -28,33 +28,30 @@
             color: var(--text); overflow-x: hidden;
         }
 
-        /* --- NEW: SPARKLE EFFECT --- */
+        /* SPARKLE EFFECT */
         .sparkle-text {
             position: relative;
             display: inline-block;
-            color: var(--gold) !important;
+            color: #000 !important; 
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             animation: sparkle-glow 2s infinite alternate;
         }
         @keyframes sparkle-glow {
             0% { filter: brightness(1); }
-            100% { filter: brightness(1.5) drop-shadow(0 0 5px #fff); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 5px #ffd700); }
         }
 
-        /* --- NEW: FLOATING ROSE --- */
+        /* FLOATING ROSE */
         .floating-rose {
-            position: absolute;
-            font-size: 24px;
-            animation: float-rose 4s ease-in-out infinite;
-            opacity: 0.8;
-            pointer-events: none;
+            position: absolute; font-size: 24px; animation: float-rose 4s ease-in-out infinite;
+            opacity: 0.8; pointer-events: none;
         }
         @keyframes float-rose {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(20deg); }
         }
 
-        /* --- 1. FULL PAGE WELCOME SCREEN --- */
+        /* WELCOME SCREEN */
         #welcome-screen {
             position: fixed; inset: 0; background: linear-gradient(135deg, var(--primary) 0%, #1a0033 100%);
             z-index: 10000; display: flex; flex-direction: column;
@@ -62,31 +59,21 @@
             text-align: center; padding: 20px;
         }
         .welcome-logo { 
-            font-family: 'Playfair Display'; 
-            font-size: 55px; 
-            margin-bottom: 5px; 
+            font-family: 'Playfair Display'; font-size: 55px; margin-bottom: 5px; 
             background: linear-gradient(to bottom, #fff, #ccc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .founder-tag { 
-            font-family: 'Dancing Script', cursive;
-            font-size: 26px; 
-            margin-bottom: 30px; 
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-family: 'Dancing Script', cursive; font-size: 26px; margin-bottom: 30px; 
+            display: flex; align-items: center; gap: 10px;
         }
         
         .enter-btn {
             background: var(--accent); color: white; border: none; padding: 20px 50px;
             border-radius: 50px; font-weight: 800; font-size: 20px; cursor: pointer;
-            box-shadow: 0 15px 30px rgba(255, 50, 105, 0.4);
-            transition: 0.3s;
+            box-shadow: 0 15px 30px rgba(255, 50, 105, 0.4); transition: 0.3s;
         }
-        .enter-btn:hover { transform: scale(1.05); }
 
-        /* --- 2. HEADER & TICKER --- */
         .header {
             background: var(--white); padding: 12px 15px; position: sticky; top: 0;
             z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -95,13 +82,8 @@
             background: #000; color: #fff; padding: 5px 0; font-size: 12px;
             font-weight: 600; overflow: hidden; white-space: nowrap;
         }
-        .ticker-content {
-            display: inline-block; animation: scrollText 20s linear infinite;
-        }
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
+        .ticker-content { display: inline-block; animation: scrollText 20s linear infinite; }
+        @keyframes scrollText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         .gaav-pill {
             background: #e1fdec; color: var(--village-green); padding: 5px 12px;
@@ -112,8 +94,6 @@
             border-radius: 5px; font-weight: 900; font-size: 12px; float: right;
             animation: bounceIn 1s infinite;
         }
-
-        /* --- 3. HERO --- */
         .hero {
             background: linear-gradient(135deg, var(--primary), #6300b4);
             margin: 15px; border-radius: 25px; padding: 25px; color: white; position: relative;
@@ -123,16 +103,11 @@
         .hero p { font-size: 16px; opacity: 0.9; margin-top: 5px; }
 
         .local-badge {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            padding: 8px 15px;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 13px;
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
+            padding: 8px 15px; border-radius: 12px; margin-top: 15px;
+            font-size: 13px; border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* --- 4. SEARCH & CATEGORY --- */
         .search-area { padding: 0 15px; margin-top: -25px; position: relative; z-index: 5; }
         .search-bar {
             background: white; border-radius: 20px; padding: 18px;
@@ -148,17 +123,12 @@
         }
         .cat-chip.active { background: var(--primary); color: white; transform: translateY(-3px); }
 
-        /* --- 5. PRODUCT GRID --- */
-        .grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 15px; padding: 15px; padding-bottom: 150px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; padding-bottom: 150px; }
         .product-card {
             background: white; border-radius: 25px; padding: 15px;
             transition: 0.3s; position: relative; border: 1px solid #f0f0f0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
-        .product-card:active { transform: scale(0.95); }
         .p-badge {
             position: absolute; top: 10px; left: 10px; background: var(--accent);
             color: white; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; z-index: 1;
@@ -173,24 +143,7 @@
             width: 100%; padding: 10px; border-radius: 15px; font-weight: 800;
             margin-top: 10px; cursor: pointer; transition: 0.3s;
         }
-        .add-btn:active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* --- 6. QUOTE STRIP --- */
-        .quote-strip {
-            background: var(--white); padding: 20px; text-align: center;
-            font-size: 15px; font-weight: 600; color: var(--primary);
-            border-top: 1px solid #eee; border-bottom: 1px solid #eee;
-            line-height: 1.5;
-        }
-
-        /* --- 7. FOOTER --- */
-        .founder-footer {
-            background: white; padding: 50px 30px; text-align: center; margin-top: 20px;
-            border-radius: 40px 40px 0 0;
-        }
-        .founder-sign { font-family: 'Dancing Script', cursive; font-size: 32px; color:black; margin-top: 10px; }
-
-        /* --- 8. CART & CHECKOUT --- */
         .cart-bar {
             position: fixed; bottom: 25px; left: 15px; right: 15px;
             background: var(--primary); color: white; padding: 18px 25px;
@@ -206,7 +159,6 @@
             background: white; width: 100%; border-radius: 40px 40px 0 0;
             padding: 30px; max-height: 90vh; overflow-y: auto;
         }
-        
         .address-box {
             background: #fdf2f5; border: 2px solid #ffebf0; padding: 20px;
             border-radius: 20px; margin-bottom: 20px;
@@ -227,42 +179,37 @@
             padding: 20px; border-radius: 20px; font-weight: 800; font-size: 16px;
         }
 
-        /* QR MODAL */
         #qrModal {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             display: none; align-items: center; justify-content: center; z-index: 9000; padding: 20px;
         }
         .qr-card { background: white; padding: 30px; border-radius: 30px; text-align: center; width: 100%; }
-
+        #toast-msg {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.85); color: white; padding: 15px 30px;
+            border-radius: 50px; font-weight: 800; display: none; z-index: 10001;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 2px solid var(--accent);
+        }
     </style>
 </head>
 <body>
 
+<div id="toast-msg">Item Bag Me Aa Gaya! 👜</div>
+
 <div id="welcome-screen" class="animate__animated">
     <span class="floating-rose" style="top:10%; left:10%;">🌹</span>
     <span class="floating-rose" style="top:20%; right:15%; animation-delay: 1s;">🌹</span>
-    <span class="floating-rose" style="bottom:15%; left:20%; animation-delay: 2s;">🌹</span>
-
     <div class="welcome-logo animate__animated animate__zoomIn">Dukaan Wala</div>
-    
     <div class="founder-tag animate__animated animate__fadeInUp animate__delay-1s">
         <span class="sparkle-text">Thakur Ravi Singh</span>
         <span>🌹</span>
     </div>
-
-    <div class="animate__animated animate__fadeInUp animate__delay-1s" style="margin-bottom: 30px;">
-        <div style="background: rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
-            <p style="margin:0; font-weight: 600; letter-spacing: 1px;">• SALEMPUR • DADAURA </p>
-            <p style="margin: 5px 0 0; opacity: 0.8; font-size: 14px;">Ab Poora Gaon Chalega Chetak Ki Raftaar Se</p>
-        </div>
-    </div>
-
     <button class="enter-btn animate__animated animate__pulse animate__infinite" onclick="enterStore()">Dukan Me Pravesh Karein</button>
 </div>
 
 <div class="mandi-ticker">
     <div class="ticker-content">
-        🔥 Babuganj Ki Mandi Ab Aapke Phone Mein! &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 🥬 Taaza Sabzi 15 Minute Mein &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 🎂 Coldrink ya Namkeen kuch bhi bas ek click dur Available &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 🏠 Salempur Se Dadaura Tak Free Delivery
+        🔥 Babuganj Ki Mandi Ab Aapke Phone Mein! &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 🏠 Salempur Se Dadaura Tak Delivery
     </div>
 </div>
 
@@ -270,23 +217,13 @@
     <div class="gaav-pill"><i class="fas fa-map-marker-alt"></i> Salempur-Dadaura Area</div>
     <div class="timer-flash"><i class="fas fa-bolt"></i> 15 MIN DELIVERY</div>
 </header>
-
 <div class="hero">
     <div style="font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 5px;">GAON KA APNA CHETAK</div>
-    <h1 style="font-size: 28px; font-weight: 800; color: rgb(15, 248, 6);">Dukan wala</h1>
-    <h5 style="font-style: italic;color: #ff3269;">Thakur Ravi Singh <br> Founder </h5>
+    <h1 style="font-size: 28px; font-weight: 800; color: #0f8;">Dukan wala</h1>
+    <h5 style="font-style: italic;color: #ff3269; margin: 5px 0;">Thakur Ravi Singh <br> Founder </h5>
     <p>Sab kuch paayein shehar jaisi speed mein!</p>
-    
-    <div class="local-badge">
-        <i class="fas fa-store"></i> Babuganj Mandi Rates Par Ghar Baithe Mangwayein
-    </div>
-    
-    <div style="margin-top:20px; background:rgba(255,255,255,0.1); padding:12px; border-radius:15px; display:flex; justify-content:space-between; align-items:center;">
-        <div>
-            <div style="font-size:10px; opacity:0.8">LOCAL DISCOUNT</div>
-            <div style="font-weight:800; font-size:18px">GAONWALO</div>
-        </div>
-        <div onclick="applyCoupon()" style="background:white; color:var(--primary); padding:6px 12px; border-radius:10px; font-weight:800; font-size:12px; cursor:pointer">APPLY</div>
+    <div onclick="applyCoupon()" id="couponBtn" style="margin-top:20px; background:white; color:var(--primary); padding:12px; border-radius:15px; text-align:center; cursor:pointer; font-weight:800; border: 2px dashed var(--primary);">
+        APPLY GAONWALO DISCOUNT
     </div>
 </div>
 
@@ -300,143 +237,43 @@
 <div class="cat-row">
     <div class="cat-chip active" onclick="filterCat('All')">Sab Kuch</div>
     <div class="cat-chip" onclick="filterCat('Groceries')">Rashan</div>
-    <div class="cat-chip" onclick="filterCat('Vegetables')">Babuganj Mandi</div>
-    <div class="cat-chip" onclick="filterCat('Dairy')">Doodh-Dahi</div>
     <div class="cat-chip" onclick="filterCat('Snacks')">Kunda Ka Nasta</div>
-</div>
-
-<div class="quote-strip animate__animated animate__fadeIn" id="quoteText">
-    "Wahi Bharosa, Nayi Speed - Dukaan Wala"
 </div>
 
 <div class="grid" id="productGrid"></div>
 
-<div class="founder-footer">
-    <div style="margin-bottom: 20px;">
-        <span style="font-size: 40px;">🌹</span>
-    </div>
-    <p style="color: #333; line-height: 1.8; font-style: italic; font-size: 18px; font-weight: 500;">
-        "Humara Gaon ab peeche nahi rahega. Jo shehar mein milta hai, wahi ab aapke ghar 15 minute mein pahunchega. Yeh Thakur Ravi Singh ka vaada hai."
-    </p>
-    <div class="founder-sign sparkle-text" style="color:black">Thakur Ravi Singh</div>
-    <p style="font-size: 12px; color: #999; letter-spacing: 2px; margin-top: 5px;">FOUNDER & VISIONARY</p>
-</div>
-
-<div class="cart-bar animate__animated animate__slideInUp" id="cartBar" onclick="toggleCheckout(true)">
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <div style="background:rgba(255,255,255,0.2); padding:10px; border-radius:12px;">
-            <i class="fas fa-shopping-basket fa-lg"></i>
-        </div>
-        <div>
-            <div id="cartQty" style="font-weight: 800; font-size: 18px;">0 Items</div>
-            <div id="freeShipMsg" style="font-size: 11px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px; font-weight: 600;"></div>
-            <div style="font-size: 11px; opacity: 0.9;">CHETAK DELIVERY</div>
-        </div>
-    </div>
-    <div style="text-align: right;">
-        <div style="font-size: 10px; opacity:0.8">TOTAL</div>
-        <div style="font-weight: 800; font-size: 22px;">₹<span id="cartPrice">0</span></div>
-    </div>
-</div>
-
-<div class="drawer" id="checkoutDrawer" onclick="if(event.target==this) toggleCheckout(false)">
-    <div class="sheet">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
-            <h2 style="margin:0; font-family:'Playfair Display'">Aapka Bill</h2>
-            <i class="fas fa-times-circle fa-2x" style="color:#eee;" onclick="toggleCheckout(false)"></i>
-        </div>
-
-        <div class="address-box">
-            <div style="font-size: 11px; font-weight: 900; color: var(--accent); letter-spacing: 1px;">DELIVERY ADDRESS IN VILLAGE</div>
-            <input type="text" id="villageAddress" placeholder="Ghar ka pata (Mandir, School ya Peepal ka ped)">
-        </div>
-
-        <div id="billItems" style="margin-bottom: 25px;"></div>
-
-        <div style="background: #f8f9ff; padding: 20px; border-radius: 25px; border: 2px dashed var(--primary);">
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-weight:600;">
-                <span>Samaan Total</span><span id="billSub">₹0</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px; color:var(--village-green); font-weight:700;">
-                <span>Chetak Delivery</span><span id="billDel">FREE</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:var(--accent); font-weight:700;">
-                <span>Gaon Discount</span><span>-₹10</span>
-            </div>
-            <div style="border-top: 2px solid #eee; padding-top: 15px; display:flex; justify-content:space-between; font-size: 26px; font-weight: 900; color: var(--primary);">
-                <span>Kul Paisa</span><span id="billGrand">₹0</span>
-            </div>
-        </div>
-
-        <div style="margin-top: 30px;">
-            <button class="btn-whatsapp" onclick="processOrder('WhatsApp')">
-                <i class="fab fa-whatsapp"></i> WHATSAPP PAR ORDER KAREIN
-            </button>
-            <button class="btn-upi" onclick="processOrder('QR')">
-                <i class="fas fa-qrcode"></i> PAY & ORDER NOW
-            </button>
-        </div>
-    </div>
-</div>
-
-<div id="qrModal">
-    <div class="qr-card">
-        <div style="color: var(--primary); font-weight: 800; font-size: 20px; margin-bottom: 10px;">Dukaan Wala Payment</div>
-        <div id="qrTarget" style="margin: 20px 0; border: 10px solid #f8f9ff; border-radius: 20px; display: inline-block; padding: 10px;"></div>
-        <h2 id="qrAmt" style="color: var(--accent); font-size: 32px; margin: 10px 0;"></h2>
-        <p style="font-size: 14px; color: #666; margin-bottom: 25px; padding: 0 20px;">Payment karke screenshot WhatsApp par bhejein, delivery shuru ho jayegi!</p>
-        <button onclick="document.getElementById('qrModal').style.display='none'" style="width:100%; border:none; padding:18px; border-radius:15px; background:#f0f0f0; font-weight:800; font-size: 16px;">CLOSE</button>
-    </div>
-</div>
-
 <script>
     const products = [
-        { id: 1, name: "Aashirvaad Shuddh Atta (5kg)", price: 210, old: 245, cat: "Groceries", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300" },
-        { id: 2, name: "Fortune Mustard Oil (1L)", price: 155, old: 175, cat: "Groceries", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
+        { id: 101, name: "Special Anarsa (1kg)", price: 50, old: 70, cat: "Snacks", img: "https://m.media-amazon.com/images/I/718y6K-mO1L._SL1500_.jpg" },
+        { id: 102, name: "Kunda Masala Chaat (Plate)", price: 30, old: 40, cat: "Snacks", img: "https://images.unsplash.com/photo-1601050638917-3f3095c215b1?w=300" },
+        { id: 1, name: "Aashirvaad Atta (5kg)", price: 210, old: 245, cat: "Groceries", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300" },
+        { id: 2, name: "Fortune Oil (1L)", price: 155, old: 175, cat: "Groceries", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
         { id: 3, name: "Amul Gold Milk (1L)", price: 66, old: 68, cat: "Dairy", img: "https://images.unsplash.com/photo-1550583724-125581cc2532?w=300" },
-        { id: 4, name: "Sugar / Chini (1kg)", price: 42, old: 48, cat: "Groceries", img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=300" },
-        { id: 5, name: "Fresh Aloo (Babuganj) 2kg", price: 45, old: 60, cat: "Vegetables", img: "https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?w=300" },
-        { id: 6, name: "Desi Onions (Red) 1kg", price: 35, old: 50, cat: "Vegetables", img: "https://images.unsplash.com/photo-1508747703725-719777637510?w=300" },
-        { id: 7, name: "Maggi Masala (Pack of 4)", price: 56, old: 60, cat: "Snacks", img: "https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=300" },
-        { id: 21, name: "Special Anarsa (1kg)", price: 50, old: 70, cat: "Snacks", img: "https://m.media-amazon.com/images/I/718y6K-mO1L._SL1500_.jpg" },
-        { id: 22, name: "Kunda Masala Chaat (Plate)", price: 30, old: 40, cat: "Snacks", img: "https://images.unsplash.com/photo-1601050638917-3f3095c215b1?w=300" },
-        { id: 8, name: "Tata Salt (1kg)", price: 28, old: 30, cat: "Groceries", img: "https://cdn-icons-png.flaticon.com/512/3034/3034811.png" },
-        { id: 9, name: "Bake-On Premium Cake", price: 250, old: 300, cat: "Snacks", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300" },
-        { id: 11, name: "Red Label Tea (250g)", price: 140, old: 160, cat: "Groceries", img: "https://images.unsplash.com/photo-1544787210-2211d7c309c7?w=300" },
-        { id: 13, name: "Lays Party Pack", price: 50, old: 50, cat: "Snacks", img: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300" },
-        { id: 14, name: "Coca Cola (1.25L)", price: 95, old: 100, cat: "Snacks", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" },
-        { id: 16, name: "Gul Manjan (Red Label)", price: 20, old: 25, cat: "Daily", img: "https://m.media-amazon.com/images/I/71YyS2G0uDL._SL1500_.jpg" },
-        { id: 18, name: "Parle-G Biscuit", price: 10, old: 10, cat: "Snacks", img: "https://m.media-amazon.com/images/I/71W+k3L+GUL._SL1500_.jpg" },
-        { id: 20, name: "Amul Dahi", price: 30, old: 32, cat: "Dairy", img: "https://images.unsplash.com/photo-1550583724-125581cc2532?w=300" }
+        { id: 16, name: "Gul Manjan", price: 20, old: 25, cat: "Daily", img: "https://m.media-amazon.com/images/I/71YyS2G0uDL._SL1500_.jpg" },
+        { id: 5, name: "Fresh Aloo 2kg", price: 45, old: 60, cat: "Vegetables", img: "https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?w=300" },
+        { id: 6, name: "Desi Onions 1kg", price: 35, old: 50, cat: "Vegetables", img: "https://images.unsplash.com/photo-1508747703725-719777637510?w=300" },
+        { id: 9, name: "Bake-On Cake", price: 250, old: 300, cat: "Snacks", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300" },
+        { id: 20, name: "Coca Cola (1.25L)", price: 95, old: 100, cat: "Snacks", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" }
     ];
-
-    const quotes = [
-        "🌹 Thakur Ravi Singh ka vaada, sasta aur taaza! 🌹",
-        "🚀 Babuganj ki Mandi ab aapke phone mein 🚀",
-        "✨ Kuch bhi bas ek click dur ✨",
-        "🏠 Gaon ka apna store - Dukaan Wala 🏠"
-    ];
-
     let cart = {};
-    let currentQuote = 0;
+    let couponApplied = false;
+
+    function showToast() {
+        const box = document.getElementById('toast-msg');
+        box.style.display = 'block';
+        setTimeout(() => box.style.display = 'none', 1500);
+    }
 
     function enterStore() {
-        const screen = document.getElementById('welcome-screen');
-        screen.classList.add('animate__slideOutUp');
-        setTimeout(() => { screen.style.display = 'none'; }, 800);
+        document.getElementById('welcome-screen').style.display = 'none';
         renderProducts(products);
-        setInterval(() => {
-            currentQuote = (currentQuote + 1) % quotes.length;
-            const q = document.getElementById('quoteText');
-            q.innerText = quotes[currentQuote];
-        }, 4000);
     }
 
     function renderProducts(data) {
         const grid = document.getElementById('productGrid');
         grid.innerHTML = data.map(p => `
-            <div class="product-card animate__animated animate__fadeInUp">
-                <span class="p-badge">NEW PRICE</span>
+            <div class="product-card">
+                <span class="p-badge">SAVE ₹${p.old - p.price}</span>
                 <img src="${p.img}" class="p-img">
                 <div class="p-title">${p.name}</div>
                 <div style="margin: 8px 0;">
@@ -444,40 +281,38 @@
                     <span class="p-old">₹${p.old}</span>
                 </div>
                 <button class="add-btn" onclick="addToCart(${p.id})">ADD TO BAG</button>
-            </div>
-        `).join('');
+            </div>`).join('');
     }
 
     function addToCart(id) {
         const p = products.find(x => x.id === id);
         cart[id] = cart[id] ? { ...cart[id], qty: cart[id].qty + 1 } : { ...p, qty: 1 };
+        showToast();
         updateCartUI();
     }
 
     function applyCoupon() {
-        alert("GAONWALO Coupon Applied! ₹10 Discount Added.");
+        couponApplied = true;
+        document.getElementById('couponBtn').innerHTML = "✅ GAONWALO APPLIED (-₹10)";
+        document.getElementById('couponBtn').style.background = "#e1fdec";
+        alert("Thakur Ravi Singh ki taraf se ₹10 ka discount mil gaya!");
         updateCartUI();
     }
 
     function updateCartUI() {
         const items = Object.values(cart);
-        const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-        const count = items.reduce((s, i) => s + i.qty, 0);
+        let subtotal = 0;
+        items.forEach(i => subtotal += (i.price * i.qty));
         
-        // Logic: Under 150 -> 30 delivery, 150+ -> Free
+        const count = items.reduce((s, i) => s + i.qty, 0);
+        // Delivery logic: ₹150 se kam par ₹30
         const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
-        const total = Math.max(0, subtotal + delFee - 10); 
+        const discount = (subtotal > 0 && couponApplied) ? 10 : 0;
+        const total = Math.max(0, subtotal + delFee - discount);
 
         document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
-        document.getElementById('cartQty').innerText = `${count} Items`;
+        document.getElementById('cartQty').innerText = count + " Items";
         document.getElementById('cartPrice').innerText = total;
-
-        const msgBox = document.getElementById('freeShipMsg');
-        if (subtotal > 0 && subtotal < 150) {
-            msgBox.innerHTML = `Add ₹${150 - subtotal} more for <span style="color:var(--gold)">FREE Delivery</span>`;
-        } else if (subtotal >= 150) {
-            msgBox.innerHTML = `🎉 Congratulations! <span style="color:var(--village-green)">Free Delivery Applied</span>`;
-        }
     }
 
     function toggleCheckout(show) {
@@ -485,55 +320,43 @@
         dr.style.display = show ? 'flex' : 'none';
         if(show) {
             const items = Object.values(cart);
-            const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-            const delFee = (subtotal >= 150) ? 0 : 30;
+            let subtotal = 0;
+            items.forEach(i => subtotal += (i.price * i.qty));
+            const delFee = (subtotal > 0 && subtotal < 150) ? 30 : 0;
+            const discount = (subtotal > 0 && couponApplied) ? 10 : 0;
             
             document.getElementById('billItems').innerHTML = items.map(i => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
                     <span>${i.name} (x${i.qty})</span>
                     <span>₹${i.price * i.qty}</span>
                 </div>`).join('');
-                
+            
             document.getElementById('billSub').innerText = `₹${subtotal}`;
-            document.getElementById('billDel').innerText = delFee === 0 ? "FREE" : `₹${delFee}`;
-            document.getElementById('billGrand').innerText = `₹${Math.max(0, subtotal + delFee - 10)}`;
+            document.getElementById('billGrand').innerText = `₹${subtotal + delFee - discount}`;
         }
     }
 
     function processOrder(type) {
         const addr = document.getElementById('villageAddress').value;
-        if(!addr) return alert("Bhaiya, Gaon ka pata ya Landmark toh daal do!");
+        if(!addr) return alert("Pata toh likhiye bhaiya!");
         
         const items = Object.values(cart);
-        const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-        const delFee = (subtotal >= 150) ? 0 : 30;
-        const finalTotal = Math.max(0, subtotal + delFee - 10);
-
-        if(type === 'QR') {
-            const upi = "aniketpratap70016@oksbi";
-            const link = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${upi}%26pn=Dukanwaala%26am=${finalTotal}%26cu=INR`;
-            document.getElementById('qrTarget').innerHTML = `<img src="${link}" style="width:200px;">`;
-            document.getElementById('qrAmt').innerText = `Pay ₹${finalTotal}`;
-            document.getElementById('qrModal').style.display = 'flex';
-        } else {
-            sendWhatsApp(addr, finalTotal);
-        }
-    }
-
-    function sendWhatsApp(addr, total) {
-        let msg = `*🌹 NAYA GAON ORDER - DUKAN WAALA 🌹*%0A`;
-        msg += `_Salempur-Dadaura Chetak Delivery_%0A%0A`;
-        Object.values(cart).forEach(i => {
-            msg += `• ${i.name} [x${i.qty}] - ₹${i.price * i.qty}%0A`;
-        });
-        msg += `%0A*Bill Total (incl. delivery): ₹${total}*%0A*Address:* ${addr}%0A%0A_Bhaiya, jaldi bhej dena!_`;
+        let subtotal = 0;
+        items.forEach(i => subtotal += (i.price * i.qty));
+        const delFee = (subtotal < 150) ? 30 : 0;
+        const total = subtotal + delFee - (couponApplied ? 10 : 0);
+        
+        let msg = `*🌹 NAYA ORDER - DUKAN WALA 🌹*%0A`;
+        items.forEach(i => msg += `• ${i.name} [x${i.qty}]%0A`);
+        msg += `%0A*Total: ₹${total}*%0A*Address:* ${addr}`;
+        
         window.open(`https://wa.me/918881070016?text=${msg}`);
     }
 
     function filterCat(cat) {
-        document.querySelectorAll('.cat-chip').forEach(c => c.classList.toggle('active', c.innerText.includes(cat) || (cat==='All' && c.innerText==='Sab Kuch')));
-        const filtered = cat === 'All' ? products : products.filter(p => p.cat === cat);
-        renderProducts(filtered);
+        document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+        event.target.classList.add('active');
+        renderProducts(cat === 'All' ? products : products.filter(p => p.cat === cat));
     }
 
     function handleSearch() {
@@ -542,5 +365,26 @@
     }
 </script>
 
+<div class="founder-footer">
+    <div class="founder-sign sparkle-text">Thakur Ravi Singh</div>
+    <p style="font-size: 12px; color: #999; margin-top: 5px;">FOUNDER & VISIONARY</p>
+</div>
+
+<div class="drawer" id="checkoutDrawer" onclick="if(event.target==this) toggleCheckout(false)">
+    <div class="sheet">
+        <h2 style="font-family:'Playfair Display'">Aapka Bill</h2>
+        <div class="address-box">
+            <input type="text" id="villageAddress" placeholder="Ghar ka pata (Landmark)">
+        </div>
+        <div id="billItems"></div>
+        <div style="border-top:1px solid #eee; padding-top:15px; margin-top:15px;">
+            <div style="display:flex; justify-content:space-between;"><span>Subtotal</span><span id="billSub"></span></div>
+            <div style="display:flex; justify-content:space-between; font-size:24px; font-weight:900; color:var(--primary); margin-top:10px;">
+                <span>Total</span><span id="billGrand"></span>
+            </div>
+        </div>
+        <button class="btn-whatsapp" style="margin-top:20px;" onclick="processOrder()">WhatsApp Par Order Karein</button>
+    </div>
+</div>
 </body>
 </html>
