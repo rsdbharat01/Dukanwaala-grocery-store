@@ -329,6 +329,7 @@
         </div>
         <div>
             <div id="cartQty" style="font-weight: 800; font-size: 18px;">0 Items</div>
+            <div id="freeShipMsg" style="font-size: 11px; text-align: center; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px; font-weight: 600;"></div>
             <div style="font-size: 11px; opacity: 0.9;">FREE CHETAK DELIVERY</div>
         </div>
     </div>
@@ -456,33 +457,51 @@
         updateCartUI();
     }
 
-    function updateCartUI() {
-        const items = Object.values(cart);
-        const count = items.reduce((s, i) => s + i.qty, 0);
-        const total = items.reduce((s, i) => s + (i.price * i.qty), 0);
-        document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
-        document.getElementById('cartQty').innerText = `${count} Items`;
-        document.getElementById('cartPrice').innerText = Math.max(0, total - 10);
-    }
+   function updateCartUI() {
+    const items = Object.values(cart);
+    const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
+    const count = items.reduce((s, i) => s + i.qty, 0);
+    
+    // DELIVERY LOGIC: ₹150 se niche ₹20 charge, upar FREE
+    const delFee = (subtotal > 0 && subtotal < 150) ? 20 : 0;
+    const total = Math.max(0, subtotal + delFee - 10); // ₹10 Gaon Discount fix hai
 
+    document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
+    document.getElementById('cartQty').innerText = `${count} Items`;
+    document.getElementById('cartPrice').innerText = total;
+
+    // Niche wala message bar change hoga
+    const msgBox = document.getElementById('freeShipMsg');
+    if (subtotal < 150) {
+        msgBox.innerHTML = `Add ₹${150 - subtotal} more for <span style="color:var(--gold)">FREE Delivery</span>`;
+    } else {
+        msgBox.innerHTML = `🎉 Congratulations! <span style="color:var(--village-green)">Free Delivery Applied</span>`;
+    }
+}
+
+    
+        
     function toggleCheckout(show) {
-        const dr = document.getElementById('checkoutDrawer');
-        dr.style.display = show ? 'flex' : 'none';
-        if(show) {
-            const list = document.getElementById('billItems');
-            const items = Object.values(cart);
-            list.innerHTML = items.map(i => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-weight:500;">
-                    <span>${i.name} (x${i.qty})</span>
-                    <span>₹${i.price * i.qty}</span>
-                </div>
-            `).join('');
-            const total = items.reduce((s, i) => s + (i.price * i.qty), 0);
-            document.getElementById('billSub').innerText = `₹${total}`;
-            document.getElementById('billGrand').innerText = `₹${Math.max(0, total - 10)}`;
-        }
+    const dr = document.getElementById('checkoutDrawer');
+    dr.style.display = show ? 'flex' : 'none';
+    if(show) {
+        const items = Object.values(cart);
+        const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
+        
+        // Fee calculation yahan bhi same rahegi
+        const delFee = (subtotal >= 150) ? 0 : 20;
+        
+        document.getElementById('billItems').innerHTML = items.map(i => `
+            <div style="display:flex; justify-content:space-between;">
+                <span>${i.name} (x${i.qty})</span>
+                <span>₹${i.price * i.qty}</span>
+            </div>`).join('');
+            
+        document.getElementById('billSub').innerText = `₹${subtotal}`;
+        document.getElementById('billDel').innerText = delFee === 0 ? "FREE" : `₹${delFee}`;
+        document.getElementById('billGrand').innerText = `₹${Math.max(0, subtotal + delFee - 10)}`;
     }
-
+}
     function processOrder(type) {
         const addr = document.getElementById('villageAddress').value;
         if(!addr) return alert("Bhaiya, Gaon ka pata ya Landmark (Mandir/School) toh daal do!");
